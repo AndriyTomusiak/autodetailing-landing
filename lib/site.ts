@@ -14,3 +14,14 @@ export const PHONE_E164 = "+380000000000";
  */
 export const FORMSPREE_ID =
   process.env.NEXT_PUBLIC_FORMSPREE_ID ?? "YOUR_FORM_ID";
+
+/**
+ * Префікс шляху на GitHub Pages (ім'я репозиторію).
+ * next/image з unoptimized не додає basePath автоматично,
+ * тому підставляємо його вручну через цей хелпер.
+ */
+export const BASE_PATH =
+  process.env.NODE_ENV === "production" ? "/autodetailing-landing" : "";
+
+/** Повертає шлях до статичного файлу з урахуванням basePath. */
+export const asset = (path: string) => `${BASE_PATH}${path}`;

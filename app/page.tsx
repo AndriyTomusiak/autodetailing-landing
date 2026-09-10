@@ -4,7 +4,7 @@ import LeadForm from "@/components/LeadForm";
 import Faq from "@/components/Faq";
 import ScrollReveal from "@/components/ScrollReveal";
 import { faqs } from "@/lib/faq";
-import { SITE_URL, BRAND, PHONE_DISPLAY, PHONE_E164 } from "@/lib/site";
+import { SITE_URL, BRAND, PHONE_DISPLAY, PHONE_E164, asset } from "@/lib/site";
 
 const delay = (ms: number) => ({ "--reveal-delay": `${ms}ms` }) as CSSProperties;
 
@@ -35,22 +35,22 @@ const advantages = [
 
 const works = [
   {
-    src: "/images/before-after-seat.png",
+    src: asset("/images/before-after-seat.png"),
     alt: "Хімчистка сидіння авто: до і після",
     label: "Хімчистка тканинного сидіння",
   },
   {
-    src: "/images/before-after-interior.png",
+    src: asset("/images/before-after-interior.png"),
     alt: "Комплексна хімчистка салону: до і після",
     label: "Комплексна чистка салону",
   },
   {
-    src: "/images/before-after-carpet.png",
+    src: asset("/images/before-after-carpet.png"),
     alt: "Чистка підлоги та килимків авто: до і після",
     label: "Чистка підлоги та багажника",
   },
   {
-    src: "/images/before-after-leather.png",
+    src: asset("/images/before-after-leather.png"),
     alt: "Догляд за шкіряним салоном: до і після",
     label: "Чистка та догляд за шкірою",
   },
@@ -164,7 +164,7 @@ export default function Home() {
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">
           <a href="#top" className="flex items-center gap-3">
             <Image
-              src="/images/logo.jpg"
+              src={asset("/images/logo.jpg")}
               alt="CleanT — Auto Cleaning & Detailing"
               width={44}
               height={44}
@@ -203,7 +203,7 @@ export default function Home() {
       {/* ─── Hero ─── */}
       <section id="top" className="relative overflow-hidden">
         <Image
-          src="/images/hero.png"
+          src={asset("/images/hero.png")}
           alt="Професійна хімчистка салону автомобіля"
           fill
           priority
@@ -470,7 +470,7 @@ export default function Home() {
           <div>
             <div className="flex items-center gap-3">
               <Image
-                src="/images/logo.jpg"
+                src={asset("/images/logo.jpg")}
                 alt="CleanT — Auto Cleaning & Detailing"
                 width={52}
                 height={52}
