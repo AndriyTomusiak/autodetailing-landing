@@ -12,7 +12,7 @@ const delay = (ms: number) => ({ "--reveal-delay": `${ms}ms` }) as CSSProperties
 const PHONE = PHONE_DISPLAY;
 const PHONE_HREF = `tel:${PHONE_E164}`;
 const TELEGRAM_URL = "https://t.me/your_username";
-const VIBER_URL = "viber://chat?number=%2B380000000000";
+const VIBER_URL = `viber://chat?number=%2B${PHONE_E164.replace("+", "")}`;
 
 const advantages = [
   {
@@ -57,11 +57,11 @@ const works = [
 ];
 
 const prices = [
-  { service: "Комплексна хімчистка салону (седан)", price: "2 500 грн" },
-  { service: "Комплексна хімчистка салону (кросовер)", price: "3 000 грн" },
-  { service: "Комплексна хімчистка салону (мінівен/бус)", price: "3 500 грн" },
+  { service: "Легкове авто", price: "4 000 грн" },
+  { service: "Позашляховик", price: "4 500 грн" },
+  { service: "Мінівен", price: "5 500 грн" },
   { service: "Хімчистка одного сидіння", price: "350 грн" },
-  { service: "Хімчистка стелі", price: "600 грн" },
+  { service: "Хімчистка стелі", price: "900 грн" },
   { service: "Хімчистка багажника", price: "500 грн" },
   { service: "Хімчистка дверних карт (4 шт)", price: "600 грн" },
   { service: "Чистка та догляд за шкіряним салоном", price: "3 500 грн" },
@@ -384,6 +384,11 @@ export default function Home() {
               </div>
             ))}
           </div>
+          <p data-reveal style={delay(250)} className="mt-5 text-sm text-muted">
+            Ціни вказані за повну комплексну хімчистку салону. Хімчистка стелі
+            виконується окремо та додається до основної вартості за бажанням
+            клієнта.
+          </p>
           <div data-reveal style={delay(300)} className="mt-8 text-center">
             <a
               href="#lead"
