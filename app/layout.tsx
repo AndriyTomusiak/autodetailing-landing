@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Montserrat } from "next/font/google";
-import { SITE_URL } from "@/lib/site";
+import { SITE_URL, asset } from "@/lib/site";
 import "./globals.css";
 
 const inter = Inter({
@@ -67,8 +67,8 @@ export const metadata: Metadata = {
     images: ["/images/hero.png"],
   },
   icons: {
-    icon: "/images/logo.jpg",
-    apple: "/images/logo.jpg",
+    icon: asset("/images/logo.jpg"),
+    apple: asset("/images/logo.jpg"),
   },
 };
 
