@@ -4,14 +4,14 @@ import LeadForm from "@/components/LeadForm";
 import Faq from "@/components/Faq";
 import ScrollReveal from "@/components/ScrollReveal";
 import { faqs } from "@/lib/faq";
-import { SITE_URL, BRAND, PHONE_DISPLAY, PHONE_E164, asset } from "@/lib/site";
+import { SITE_URL, BRAND, PHONE_DISPLAY, PHONE_E164, asset, TELEGRAM_USERNAME } from "@/lib/site";
 
 const delay = (ms: number) => ({ "--reveal-delay": `${ms}ms` }) as CSSProperties;
 
 /* ─── Дані-заглушки: замініть на реальні ─── */
 const PHONE = PHONE_DISPLAY;
 const PHONE_HREF = `tel:${PHONE_E164}`;
-const TELEGRAM_URL = "https://t.me/your_username";
+const TELEGRAM_URL = `https://t.me/${TELEGRAM_USERNAME}`;
 const VIBER_URL = `viber://chat?number=%2B${PHONE_E164.replace("+", "")}`;
 
 const advantages = [
