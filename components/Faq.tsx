@@ -31,15 +31,17 @@ export default function Faq() {
                 +
               </span>
             </button>
-            {/* Відповідь завжди присутня в HTML (важливо для SEO),
-                ховається лише візуально */}
-            <p
-              className={`px-6 text-sm leading-relaxed text-muted transition-all ${
-                isOpen ? "pb-5" : "hidden"
+            <div
+              className={`grid transition-[grid-template-rows] duration-300 ease-in-out ${
+                isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
               }`}
             >
-              {item.a}
-            </p>
+              <div className="overflow-hidden">
+                <p className="px-6 pb-5 text-sm leading-relaxed text-muted">
+                  {item.a}
+                </p>
+              </div>
+            </div>
           </div>
         );
       })}
