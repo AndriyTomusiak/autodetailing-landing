@@ -12,7 +12,7 @@ export const TELEGRAM_USERNAME =
 
 /**
  * ID форми Formspree (https://formspree.io).
- * Зареєструйте безкоштовну форму та вставте її ID сюди —
+ * Зареєструйте безкоштовну форму та вставте її ID сюди
  * заявки надходитимуть на вашу пошту.
  */
 export const FORMSPREE_ID =

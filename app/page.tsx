@@ -17,7 +17,7 @@ const VIBER_URL = `viber://chat?number=%2B${PHONE_E164.replace("+", "")}`;
 const advantages = [
   {
     title: "Гарантія результату",
-    text: "Видаляємо до 99% плям і запахів. Якщо пляма не піддається — попередимо чесно ще до початку робіт.",
+    text: "Видаляємо до 99% плям і запахів. Якщо пляма не піддається попередимо чесно ще до початку робіт.",
   },
   {
     title: "Фіксовані ціни",
@@ -29,7 +29,7 @@ const advantages = [
   },
   {
     title: "Професійне обладнання",
-    text: "Екстракторні машини, парогенератори та професійна хімія — глибока чистка без пошкодження оббивки.",
+    text: "Екстракторні машини, парогенератори та професійна хімія глибока чистка без пошкодження оббивки.",
   },
 ];
 
@@ -65,7 +65,7 @@ const prices = [
 const steps = [
   {
     title: "Заявка",
-    text: "Телефонуєте або залишаєте заявку на сайті — передзвонимо протягом 15 хвилин.",
+    text: "Телефонуєте або залишаєте заявку на сайті передзвонимо протягом 15 хвилин.",
   },
   {
     title: "Запис у бокс",
@@ -77,7 +77,7 @@ const steps = [
   },
   {
     title: "Чистка та приймання",
-    text: "Виконуємо роботу за 2–4 години. Ви приймаєте результат і оплачуєте — готівкою або карткою.",
+    text: "Виконуємо роботу за 2–4 години. Ви приймаєте результат і оплачуєте готівкою або карткою.",
   },
 ];
 
@@ -160,7 +160,7 @@ export default function Home() {
           <a href="#top" className="flex items-center gap-3">
             <Image
               src={asset("/images/logo.jpg")}
-              alt="CleanT — Auto Cleaning & Detailing"
+              alt="CleanT Auto Cleaning & Detailing"
               width={44}
               height={44}
               className="rounded-full"
@@ -272,7 +272,7 @@ export default function Home() {
             },
             {
               title: "Окремі елементи",
-              text: "Не потрібен повний комплекс? Почистимо лише сидіння, багажник, стелю або дитяче крісло — платите тільки за потрібне.",
+              text: "Не потрібен повний комплекс? Почистимо лише сидіння, багажник, стелю або дитяче крісло платите тільки за потрібне.",
             },
             {
               title: "Шкіряний салон",
@@ -325,7 +325,7 @@ export default function Home() {
           Роботи наших майстрів
         </h2>
         <p data-reveal style={delay(100)} className="mt-3 text-muted">
-          Ми не просто чистимо — ми повертаємо салону вигляд нового авто
+          Ми не просто чистимо ми повертаємо салону вигляд нового авто
         </p>
         <div className="mt-10 grid gap-6 sm:grid-cols-2">
           {works.map((w, i) => (
@@ -379,10 +379,30 @@ export default function Home() {
               </div>
             ))}
           </div>
-          <p data-reveal style={delay(250)} className="mt-5 text-sm text-muted">
-            Ціни вказані за повну комплексну хімчистку салону. Хімчистка стелі
-            виконується окремо та додається до основної вартості за бажанням
-            клієнта.
+          {/* ─── Ceiling cleaning highlight ─── */}
+          <div
+            data-reveal
+            style={delay(260)}
+            className="mt-6 flex flex-col gap-3 rounded-2xl border border-accent/40 bg-accent/10 p-6 sm:flex-row sm:items-center sm:justify-between"
+          >
+            <div>
+              <span className="inline-block rounded-full border border-accent/40 bg-accent/20 px-3 py-0.5 text-xs font-semibold uppercase tracking-wide text-accent">
+                Додаткова послуга
+              </span>
+              <h3 className="mt-2 text-xl font-extrabold">Хімчистка стелі</h3>
+              <p className="mt-1 max-w-md text-sm text-muted">
+                Стеля поглинає пари, жири та неприємні запахи. Чистимо делікатним
+                методом без розводів окремо або разом із салоном.
+              </p>
+            </div>
+            <div className="shrink-0 text-right">
+              <p className="text-3xl font-extrabold text-accent">900 грн</p>
+              <p className="mt-0.5 text-xs text-muted">окрема послуга</p>
+            </div>
+          </div>
+
+          <p data-reveal style={delay(300)} className="mt-4 text-sm text-muted">
+            Ціни вказані за повну комплексну хімчистку салону (без стелі).
           </p>
           <div data-reveal style={delay(300)} className="mt-8 text-center">
             <a
@@ -442,7 +462,7 @@ export default function Home() {
               замовлення
             </h2>
             <p className="mt-4 text-muted">
-              Залишіть заявку — менеджер передзвонить протягом 15 хвилин,
+              Залишіть заявку менеджер передзвонить протягом 15 хвилин,
               проконсультує та підбере зручний час запису.
             </p>
             <ul className="mt-6 space-y-3 text-sm">
@@ -471,7 +491,7 @@ export default function Home() {
             <div className="flex items-center gap-3">
               <Image
                 src={asset("/images/logo.jpg")}
-                alt="CleanT — Auto Cleaning & Detailing"
+                alt="CleanT Auto Cleaning & Detailing"
                 width={52}
                 height={52}
                 className="rounded-full"

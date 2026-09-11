@@ -16,11 +16,11 @@ const montserrat = Montserrat({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "CleanT — професійна хімчистка авто | Auto Cleaning & Detailing",
+    default: "CleanT професійна хімчистка авто | Auto Cleaning & Detailing",
     template: "%s | CleanT",
   },
   description:
-    "CleanT — професійна хімчистка салону автомобіля: сидіння, стеля, підлога, шкіряний салон. Безпечна хімія, фіксовані ціни, оплата після виконання. Запишіться онлайн!",
+    "CleanT професійна хімчистка салону автомобіля: сидіння, стеля, підлога, шкіряний салон. Безпечна хімія, фіксовані ціни, оплата після виконання. Запишіться онлайн!",
   keywords: [
     "хімчистка авто",
     "хімчистка салону автомобіля",
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "CleanT — професійна хімчистка авто",
+    title: "CleanT професійна хімчистка авто",
     description:
       "Глибока хімчистка салону, окремих елементів та шкіри. Оплата після виконання.",
     url: "/",
@@ -55,19 +55,18 @@ export const metadata: Metadata = {
         url: "/images/hero.png",
         width: 1024,
         height: 576,
-        alt: "CleanT — професійна хімчистка салону автомобіля",
+        alt: "CleanT професійна хімчистка салону автомобіля",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "CleanT — професійна хімчистка авто",
+    title: "CleanT професійна хімчистка авто",
     description:
       "Глибока хімчистка салону, окремих елементів та шкіри. Оплата після виконання.",
     images: ["/images/hero.png"],
   },
   icons: {
-    icon: asset("/images/logo.jpg"),
     apple: asset("/images/logo.jpg"),
   },
 };
