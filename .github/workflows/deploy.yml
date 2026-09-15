@@ -1,8 +1,6 @@
 name: Deploy to GitHub Pages
 
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -32,8 +30,7 @@ jobs:
 
       - name: Build static site
         env:
-          NEXT_PUBLIC_TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          NEXT_PUBLIC_TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          GITHUB_PAGES: "true"
         run: npm run build
 
       - name: Upload artifact

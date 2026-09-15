@@ -10,13 +10,5 @@ export const PHONE_E164 = process.env.NEXT_PUBLIC_PHONE_E164 ?? "+380932664159";
 export const TELEGRAM_USERNAME =
   process.env.NEXT_PUBLIC_TELEGRAM_USERNAME ?? "andriytomusiak";
 
-/** Токен бота (@BotFather). Потрапляє в клієнтський бандл (статичний GitHub Pages). */
-export const TELEGRAM_BOT_TOKEN =
-  process.env.NEXT_PUBLIC_TELEGRAM_BOT_TOKEN ?? "";
-
-/** chat_id, куди слати заявки (особистий акаунт або група). */
-export const TELEGRAM_CHAT_ID =
-  process.env.NEXT_PUBLIC_TELEGRAM_CHAT_ID ?? "";
-
 /** Повертає шлях до статичного файлу з урахуванням basePath. */
 export const asset = (path: string) => `${path}`;

@@ -1,21 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import { LEAD_SERVICES } from "@/lib/lead";
 import {
   UA_PHONE_ERROR,
   digitsOnly,
   formatUaMobileE164,
   isValidUaMobile,
 } from "@/lib/phone";
-import { TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID } from "@/lib/site";
-import { sendLeadToTelegram } from "@/lib/telegram";
-
-const services = [
-  "Комплексна хімчистка салону",
-  "Хімчистка окремих елементів",
-  "Чистка та догляд за шкіряним салоном",
-  "Інше / потрібна консультація",
-];
 
 type Status = "idle" | "loading" | "success" | "error";
 
@@ -40,19 +32,19 @@ export default function LeadForm() {
       return;
     }
 
-    if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) {
-      setStatus("error");
-      return;
-    }
-
     setStatus("loading");
     try {
-      await sendLeadToTelegram(TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID, {
-        name: String(data.get("name") ?? "").trim(),
-        phone: formatUaMobileE164(phone),
-        service: String(data.get("service") ?? "").trim(),
-        comment: String(data.get("comment") ?? "").trim(),
+      const res = await fetch("/api/lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: String(data.get("name") ?? "").trim(),
+          phone: formatUaMobileE164(phone),
+          service: String(data.get("service") ?? "").trim(),
+          comment: String(data.get("comment") ?? "").trim(),
+        }),
       });
+      if (!res.ok) throw new Error("Request failed");
       setStatus("success");
       setPhone("");
       setPhoneError("");
@@ -132,7 +124,7 @@ export default function LeadForm() {
           name="service"
           className="w-full rounded-lg border border-white/10 bg-surface-2 px-4 py-3 text-sm outline-none transition focus:border-accent"
         >
-          {services.map((s) => (
+          {LEAD_SERVICES.map((s) => (
             <option key={s}>{s}</option>
           ))}
         </select>
