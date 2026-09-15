@@ -1,7 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { FORMSPREE_ID } from "@/lib/site";
+import {
+  UA_PHONE_ERROR,
+  digitsOnly,
+  formatUaMobileE164,
+  isValidUaMobile,
+} from "@/lib/phone";
+import { TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID } from "@/lib/site";
+import { sendLeadToTelegram } from "@/lib/telegram";
 
 const services = [
   "Комплексна хімчистка салону",
@@ -14,24 +21,41 @@ type Status = "idle" | "loading" | "success" | "error";
 
 export default function LeadForm() {
   const [status, setStatus] = useState<Status>("idle");
+  const [phone, setPhone] = useState("");
+  const [phoneError, setPhoneError] = useState("");
+
+  function handlePhoneChange(value: string) {
+    const next = digitsOnly(value).slice(0, 12);
+    setPhone(next);
+    if (!next || isValidUaMobile(next)) setPhoneError("");
+  }
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = e.currentTarget;
-    const data = Object.fromEntries(new FormData(form).entries());
+    const data = new FormData(form);
+
+    if (!isValidUaMobile(phone)) {
+      setPhoneError(UA_PHONE_ERROR);
+      return;
+    }
+
+    if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) {
+      setStatus("error");
+      return;
+    }
 
     setStatus("loading");
     try {
-      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify(data),
+      await sendLeadToTelegram(TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID, {
+        name: String(data.get("name") ?? "").trim(),
+        phone: formatUaMobileE164(phone),
+        service: String(data.get("service") ?? "").trim(),
+        comment: String(data.get("comment") ?? "").trim(),
       });
-      if (!res.ok) throw new Error("Request failed");
       setStatus("success");
+      setPhone("");
+      setPhoneError("");
       form.reset();
     } catch {
       setStatus("error");
@@ -79,11 +103,25 @@ export default function LeadForm() {
           id="phone"
           name="phone"
           type="tel"
+          inputMode="numeric"
+          autoComplete="tel-national"
           required
-          pattern="[+()0-9\s-]{10,18}"
-          placeholder="067-000-00-00"
+          maxLength={12}
+          value={phone}
+          onChange={(e) => handlePhoneChange(e.target.value)}
+          onBlur={() => {
+            if (phone && !isValidUaMobile(phone)) setPhoneError(UA_PHONE_ERROR);
+          }}
+          placeholder="0932664159"
+          aria-invalid={phoneError ? true : undefined}
+          aria-describedby={phoneError ? "phone-error" : undefined}
           className="w-full rounded-lg border border-white/10 bg-surface-2 px-4 py-3 text-sm outline-none transition placeholder:text-muted/60 focus:border-accent"
         />
+        {phoneError ? (
+          <p id="phone-error" className="mt-1.5 text-sm text-red-400">
+            {phoneError}
+          </p>
+        ) : null}
       </div>
       <div>
         <label htmlFor="service" className="mb-1.5 block text-sm font-semibold">
