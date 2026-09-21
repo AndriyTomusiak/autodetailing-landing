@@ -57,9 +57,39 @@ const works = [
 ];
 
 const prices = [
-  { service: "Легкове авто", price: "4 000 грн" },
-  { service: "Позашляховик", price: "4 500 грн" },
-  { service: "Мінівен", price: "5 500 грн" },
+  {
+    category: "Легкові авто",
+    desc: "Глибоке очищення салону легкового автомобіля з делікатним підходом до матеріалів.",
+    price: "3 500",
+    items: [
+      "Хімчистка сидінь",
+      "Чищення килимів та багажника",
+      "Очищення дверних карт",
+      "Делікатне очищення торпедо",
+    ],
+  },
+  {
+    category: "Кросовери та SUV",
+    desc: "Ретельне очищення просторого салону з акцентом на комфорт і акуратний фінальний вигляд.",
+    price: "4 500",
+    items: [
+      "Хімчистка сидінь",
+      "Чищення килимів та багажника",
+      "Очищення дверних карт",
+      "Делікатне очищення торпедо",
+    ],
+  },
+  {
+    category: "Мінівени та великі авто",
+    desc: "Повна хімчистка салону для великих авто з очищенням усіх основних зон та матеріалів.",
+    price: "5 000",
+    items: [
+      "Хімчистка сидінь",
+      "Чищення килимів та багажника",
+      "Очищення дверних карт",
+      "Делікатне очищення пластику",
+    ],
+  },
 ];
 
 const steps = [
@@ -81,10 +111,10 @@ const steps = [
   },
 ];
 
-function CheckIcon() {
+function CheckIcon({ className = "mt-1 h-5 w-5 shrink-0 text-accent" }: { className?: string }) {
   return (
     <svg
-      className="mt-1 h-5 w-5 shrink-0 text-accent"
+      className={className}
       viewBox="0 0 20 20"
       fill="currentColor"
       aria-hidden
@@ -360,51 +390,52 @@ export default function Home() {
             Остаточна ціна залежить від ступеня забруднення та узгоджується до
             початку робіт
           </p>
-          <div
-            data-reveal
-            style={delay(200)}
-            className="mt-10 overflow-hidden rounded-2xl border border-white/5"
-          >
+          <div className="mt-10 grid gap-6 md:grid-cols-3">
             {prices.map((p, i) => (
-              <div
-                key={p.service}
-                className={`flex items-center justify-between gap-4 px-6 py-4 ${
-                  i % 2 === 0 ? "bg-surface-2" : "bg-surface"
-                }`}
+              <article
+                key={p.category}
+                data-reveal
+                style={delay(200 + i * 80)}
+                className="card-lift flex h-full flex-col gap-6 rounded-2xl border border-white/10 bg-surface-2 p-6"
               >
-                <span>{p.service}</span>
-                <span className="whitespace-nowrap font-bold text-accent">
-                  {p.price}
-                </span>
-              </div>
+                <div className="space-y-3">
+                  <div className="space-y-1">
+                    <h3 className="text-xl font-extrabold">Хімчистка</h3>
+                    <p className="text-sm font-semibold text-accent">
+                      {p.category}
+                    </p>
+                  </div>
+                  <p className="text-sm leading-relaxed text-muted">{p.desc}</p>
+                  <p className="text-3xl font-extrabold text-accent">
+                    від {p.price}{" "}
+                    <span className="text-lg font-bold">грн</span>
+                  </p>
+                </div>
+                <ul className="flex flex-1 flex-col justify-center gap-3 text-sm">
+                  {p.items.map((item) => (
+                    <li key={item} className="flex items-center gap-3">
+                      <CheckIcon className="h-5 w-5 shrink-0 text-accent" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+                <a
+                  href="#lead"
+                  className="inline-flex w-full items-center justify-center rounded-xl border border-accent/50 px-5 py-3 text-center text-sm font-bold text-accent transition hover:border-accent hover:bg-accent hover:text-white"
+                >
+                  Обрати послугу
+                </a>
+              </article>
             ))}
           </div>
-          {/* ─── Ceiling cleaning highlight ─── */}
           <div
             data-reveal
-            style={delay(260)}
-            className="mt-6 flex flex-col gap-3 rounded-2xl border border-accent/40 bg-accent/10 p-6 sm:flex-row sm:items-center sm:justify-between"
+            style={delay(300)}
+            className="mt-10 flex flex-col items-center gap-6"
           >
-            <div>
-              <span className="inline-block rounded-full border border-accent/40 bg-accent/20 px-3 py-0.5 text-xs font-semibold uppercase tracking-wide text-accent">
-                Додаткова послуга
-              </span>
-              <h3 className="mt-2 text-xl font-extrabold">Хімчистка стелі</h3>
-              <p className="mt-1 max-w-md text-sm text-muted">
-                Стеля поглинає пари, жири та неприємні запахи. Чистимо делікатним
-                методом без розводів окремо або разом із салоном.
-              </p>
-            </div>
-            <div className="shrink-0 text-right">
-              <p className="text-3xl font-extrabold text-accent">900 грн</p>
-              <p className="mt-0.5 text-xs text-muted">окрема послуга</p>
-            </div>
-          </div>
-
-          <p data-reveal style={delay(300)} className="mt-4 text-sm text-muted">
-            Ціни вказані за повну комплексну хімчистку салону (без стелі).
-          </p>
-          <div data-reveal style={delay(300)} className="mt-8 text-center">
+            <p className="text-center text-sm text-muted">
+              Ціни вказані за повну комплексну хімчистку салону.
+            </p>
             <a
               href="#lead"
               className="inline-block rounded-xl bg-accent px-8 py-4 font-bold text-white transition hover:bg-accent-strong"
