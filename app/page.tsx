@@ -156,7 +156,7 @@ const businessJsonLd = {
   ],
   makesOffer: prices.map((p) => ({
     "@type": "Offer",
-    itemOffered: { "@type": "Service", name: p.service },
+    itemOffered: { "@type": "Service", name: `Хімчистка · ${p.category}` },
     price: p.price.replace(/[^\d]/g, ""),
     priceCurrency: "UAH",
   })),
