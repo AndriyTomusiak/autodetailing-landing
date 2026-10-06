@@ -33,12 +33,26 @@ const advantages = [
   },
 ];
 
-const works = [
+type WorkPair = {
+  before: string;
+  after: string;
+  altBefore: string;
+  altAfter: string;
+  label: string;
+};
+
+type WorkSingle = {
+  src: string;
+  alt: string;
+  label: string;
+};
+
+type Work = WorkPair | WorkSingle;
+
+const works: Work[] = [
   {
-    before: asset("/images/portfolio-pattern-before.jpg"),
-    after: asset("/images/portfolio-pattern-after.jpg"),
-    altBefore: "Тканинне сидіння до хімчистки",
-    altAfter: "Тканинне сидіння після хімчистки",
+    src: asset("/images/portfolio-pattern.jpg"),
+    alt: "Хімчистка тканинного сидіння: до і після",
     label: "Хімчистка тканинного сидіння",
   },
   {
@@ -54,6 +68,8 @@ const works = [
     altBefore: "Тканинне сидіння до хімчистки",
     altAfter: "Тканинне сидіння після хімчистки",
     label: "Хімчистка світлого сидіння",
+  },
+];
 
 const prices = [
   {
@@ -364,30 +380,47 @@ export default function Home() {
               style={delay((i % 2) * 120)}
               className="card-lift overflow-hidden rounded-2xl border border-white/5 bg-surface"
             >
-              <div className="grid grid-cols-2">
-                <div className="relative aspect-[3/4] sm:aspect-[4/3]">
+              {"src" in w ? (
+                <div className="relative aspect-square">
                   <Image
-                    src={w.before}
-                    alt={w.altBefore}
+                    src={w.src}
+                    alt={w.alt}
                     fill
-                    className="object-cover"
+                    className="object-contain"
                   />
                   <span className="absolute left-3 top-3 rounded-md bg-black/70 px-3 py-1 text-xs font-bold uppercase tracking-wide">
                     До
                   </span>
-                </div>
-                <div className="relative aspect-[3/4] sm:aspect-[4/3]">
-                  <Image
-                    src={w.after}
-                    alt={w.altAfter}
-                    fill
-                    className="object-cover"
-                  />
                   <span className="absolute right-3 top-3 rounded-md bg-accent px-3 py-1 text-xs font-bold uppercase tracking-wide text-white">
                     Після
                   </span>
                 </div>
-              </div>
+              ) : (
+                <div className="grid grid-cols-2">
+                  <div className="relative aspect-[3/4] sm:aspect-[4/3]">
+                    <Image
+                      src={w.before}
+                      alt={w.altBefore}
+                      fill
+                      className="object-cover"
+                    />
+                    <span className="absolute left-3 top-3 rounded-md bg-black/70 px-3 py-1 text-xs font-bold uppercase tracking-wide">
+                      До
+                    </span>
+                  </div>
+                  <div className="relative aspect-[3/4] sm:aspect-[4/3]">
+                    <Image
+                      src={w.after}
+                      alt={w.altAfter}
+                      fill
+                      className="object-cover"
+                    />
+                    <span className="absolute right-3 top-3 rounded-md bg-accent px-3 py-1 text-xs font-bold uppercase tracking-wide text-white">
+                      Після
+                    </span>
+                  </div>
+                </div>
+              )}
               <figcaption className="p-4 text-sm font-semibold">{w.label}</figcaption>
             </figure>
           ))}
