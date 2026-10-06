@@ -35,11 +35,11 @@ const advantages = [
 
 const works = [
   {
-    before: asset("/images/portfolio-suv-before.jpg"),
-    after: asset("/images/portfolio-suv-after.jpg"),
-    altBefore: "Салон кросовера до хімчистки",
-    altAfter: "Салон кросовера після хімчистки",
-    label: "Комплексна чистка салону",
+    before: asset("/images/portfolio-pattern-before.jpg"),
+    after: asset("/images/portfolio-pattern-after.jpg"),
+    altBefore: "Тканинне сидіння до хімчистки",
+    altAfter: "Тканинне сидіння після хімчистки",
+    label: "Хімчистка тканинного сидіння",
   },
   {
     before: asset("/images/portfolio-rear-before.jpg"),
@@ -53,9 +53,7 @@ const works = [
     after: asset("/images/portfolio-seat-after.jpg"),
     altBefore: "Тканинне сидіння до хімчистки",
     altAfter: "Тканинне сидіння після хімчистки",
-    label: "Хімчистка тканинного сидіння",
-  },
-];
+    label: "Хімчистка світлого сидіння",
 
 const prices = [
   {
