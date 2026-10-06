@@ -35,24 +35,25 @@ const advantages = [
 
 const works = [
   {
-    src: asset("/images/before-after-seat.png"),
-    alt: "Хімчистка сидіння авто: до і після",
+    before: asset("/images/portfolio-seat-before.jpg"),
+    after: asset("/images/portfolio-seat-after.jpg"),
+    altBefore: "Тканинне сидіння до хімчистки",
+    altAfter: "Тканинне сидіння після хімчистки",
     label: "Хімчистка тканинного сидіння",
   },
   {
-    src: asset("/images/before-after-interior.png"),
-    alt: "Комплексна хімчистка салону: до і після",
+    before: asset("/images/portfolio-rear-before.jpg"),
+    after: asset("/images/portfolio-rear-after.jpg"),
+    altBefore: "Задній ряд до хімчистки",
+    altAfter: "Задній ряд після хімчистки",
+    label: "Хімчистка заднього ряду",
+  },
+  {
+    before: asset("/images/portfolio-suv-before.jpg"),
+    after: asset("/images/portfolio-suv-after.jpg"),
+    altBefore: "Салон кросовера до хімчистки",
+    altAfter: "Салон кросовера після хімчистки",
     label: "Комплексна чистка салону",
-  },
-  {
-    src: asset("/images/before-after-carpet.png"),
-    alt: "Чистка підлоги та килимків авто: до і після",
-    label: "Чистка підлоги та багажника",
-  },
-  {
-    src: asset("/images/before-after-leather.png"),
-    alt: "Догляд за шкіряним салоном: до і після",
-    label: "Чистка та догляд за шкірою",
   },
 ];
 
@@ -357,22 +358,37 @@ export default function Home() {
         <p data-reveal style={delay(100)} className="mt-3 text-muted">
           Ми не просто чистимо ми повертаємо салону вигляд нового авто
         </p>
-        <div className="mt-10 grid gap-6 sm:grid-cols-2">
+        <div className="mt-10 grid gap-6 lg:grid-cols-1">
           {works.map((w, i) => (
             <figure
-              key={w.src}
+              key={w.label}
               data-reveal="zoom"
               style={delay((i % 2) * 120)}
               className="card-lift overflow-hidden rounded-2xl border border-white/5 bg-surface"
             >
-              <div className="relative aspect-[4/3]">
-                <Image src={w.src} alt={w.alt} fill className="object-cover" />
-                <span className="absolute left-3 top-3 rounded-md bg-black/70 px-3 py-1 text-xs font-bold uppercase tracking-wide">
-                  До
-                </span>
-                <span className="absolute right-3 top-3 rounded-md bg-accent px-3 py-1 text-xs font-bold uppercase tracking-wide text-white">
-                  Після
-                </span>
+              <div className="grid grid-cols-2">
+                <div className="relative aspect-[3/4] sm:aspect-[4/3]">
+                  <Image
+                    src={w.before}
+                    alt={w.altBefore}
+                    fill
+                    className="object-cover"
+                  />
+                  <span className="absolute left-3 top-3 rounded-md bg-black/70 px-3 py-1 text-xs font-bold uppercase tracking-wide">
+                    До
+                  </span>
+                </div>
+                <div className="relative aspect-[3/4] sm:aspect-[4/3]">
+                  <Image
+                    src={w.after}
+                    alt={w.altAfter}
+                    fill
+                    className="object-cover"
+                  />
+                  <span className="absolute right-3 top-3 rounded-md bg-accent px-3 py-1 text-xs font-bold uppercase tracking-wide text-white">
+                    Після
+                  </span>
+                </div>
               </div>
               <figcaption className="p-4 text-sm font-semibold">{w.label}</figcaption>
             </figure>
